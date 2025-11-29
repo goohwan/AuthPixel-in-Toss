@@ -1,56 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
-    <meta charset="utf-8">
-    <title>AuthPixel - 접속 중...</title>
-    <!-- 1. 메타 태그를 이용한 즉시 이동 -->
-    <!-- <meta http-equiv="refresh" content="0; url=https://atpixel.streamlit.app/"> -->
-    <meta name="google-adsense-account" content="ca-pub-3474389046240414">
+    <meta charset="UTF-8">
+    <title>AuthPixel - AI 이미지 보안 솔루션</title>
+    <!-- 구글 애드센스 메타 태그 & 스크립트 위치 -->
+    <meta name="google-adsense-account" content="ca-pub-XXXXXXXX">
+    <script async src="https://pagead2.googlesyndication.com/..."></script>
+
     <style>
+        /* 간단한 스타일링 */
         body {
             background-color: #0e1117;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            text-align: center;
             font-family: sans-serif;
-            flex-direction: column;
+            padding: 50px;
         }
 
-        .loader {
-            border: 4px solid #333;
-            border-top: 4px solid #00e5ff;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+        .btn {
+            background-color: #00e5ff;
+            color: black;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1.2rem;
         }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+        .ad-container {
+            margin: 30px auto;
+            width: 300px;
+            height: 250px;
+            background: #222;
         }
     </style>
-
-    <!-- 2. 자바스크립트를 이용한 이동 (이중 안전장치) -->
-    <!-- <script type="text/javascript">
-        window.location.href = "https://atpixel.streamlit.app/";
-    </script> -->
 </head>
 
 <body>
-    <div class="loader"></div>
-    <p>AuthPixel 보안 서버로 연결 중입니다...</p>
-    <p style="font-size: 12px; color: #666;">자동으로 이동하지 않으면 <a href="https://atpixel.streamlit.app/"
-            style="color: #00e5ff;">여기</a>를 클릭하세요.</p>
+    <h1>AuthPixel 🔒</h1>
+    <p>AI 생성 이미지, 이제 안심하고 공유하세요.</p>
+    <p>보이지 않는 워터마크로 당신의 저작권을 지켜드립니다.</p>
+
+    <!-- [광고 영역 1] -->
+    <div class="ad-container">
+        <!-- 여기에 애드센스 광고 단위 코드를 넣으세요 -->
+        <p style="color:#666; padding-top:100px;">광고 영역</p>
+    </div>
+
+    <!-- [서비스 시작 버튼] -->
+    <br>
+    <a href="https://atpixel.streamlit.app/" class="btn">워터마크 만들기 시작 (무료) ➤</a>
+    <br><br>
+
+    <!-- [광고 영역 2] -->
+    <div class="ad-container">
+        <!-- 하단 광고 -->
+    </div>
 </body>
 
 </html>
