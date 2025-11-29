@@ -195,7 +195,11 @@ with col2:
         toggle_language()
         st.rerun()
 
-st.markdown(f"### {t['subtitle']}")
+sub_col1, sub_col2 = st.columns([1, 15])
+with sub_col1:
+    st.image("shield_icon.jpg", width=40)
+with sub_col2:
+    st.markdown(f"### {t['subtitle']}")
 
 tab1, tab2 = st.tabs([t["tab_protect"], t["tab_verify"]])
 
