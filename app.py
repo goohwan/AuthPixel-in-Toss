@@ -195,9 +195,9 @@ with col2:
         toggle_language()
         st.rerun()
 
-sub_col1, sub_col2 = st.columns([1, 15])
+sub_col1, sub_col2 = st.columns([3, 10])
 with sub_col1:
-    st.image("shield_icon.jpg", width=40)
+    st.image("shield_icon.jpg", width=150)
 with sub_col2:
     st.markdown(f"### {t['subtitle']}")
 
