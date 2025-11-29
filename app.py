@@ -52,7 +52,7 @@ translations = {
     },
     "ko": {
         "title": "AuthPixel 🔒",
-        "subtitle": "보이지 않는 워터마크 시스템 (Lightweight)",
+        "subtitle": "보이지 않는 워터마크 시스템",
         "tab_protect": "🛡️ 보호하기",
         "tab_verify": "🔍 검증하기",
         "header_protect": "보이지 않는 워터마크 삽입",
