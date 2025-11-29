@@ -13,6 +13,12 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# --- AdSense ---
+st.markdown("""
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3474389046240414"
+     crossorigin="anonymous"></script>
+""", unsafe_allow_html=True)
+
 # --- Localization ---
 if 'language' not in st.session_state:
     st.session_state.language = 'en'
