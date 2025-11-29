@@ -285,7 +285,7 @@ with st.sidebar:
     st.markdown(
         """
         <a href="https://www.buymeacoffee.com/goohwan">
-            <img src="https://img.buymeacoffee.com/button-api/?text= 커피 한 잔 후원하기&emoji=☕&slug=goohwan&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
+            <img src="https://img.buymeacoffee.com/button-api/?text=커피한잔후원하기&emoji=☕&slug=goohwan&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
         </a>
         """,
         unsafe_allow_html=True
