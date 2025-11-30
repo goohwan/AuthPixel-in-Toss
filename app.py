@@ -104,16 +104,23 @@ st.markdown("""
 
     /* PC Layout: Right Sidebar */
     @media (min-width: 769px) {
+        /* Force Sidebar to Right */
         [data-testid="stSidebar"] {
-            min-width: 350px !important;
-            max-width: 350px !important;
+            position: fixed !important;
             left: auto !important;
             right: 0 !important;
-            border-right: none;
-            border-left: 1px solid #4A4D55;
+            top: 0 !important;
+            bottom: 0 !important;
+            width: 350px !important;
+            min-width: 350px !important;
+            max-width: 350px !important;
+            border-right: none !important;
+            border-left: 1px solid #4A4D55 !important;
+            transform: none !important;
+            z-index: 10000 !important;
         }
         
-        /* Adjust Main Content */
+        /* Adjust Main Content to make space on right */
         section[data-testid="stMain"] {
             margin-left: 0 !important;
             margin-right: 350px !important;
@@ -121,8 +128,9 @@ st.markdown("""
         
         /* Adjust Header */
         header[data-testid="stHeader"] {
-            margin-left: 0 !important;
-            margin-right: 350px !important;
+            left: 0 !important;
+            right: 350px !important;
+            width: auto !important;
         }
     }
     
