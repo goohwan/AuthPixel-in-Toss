@@ -97,46 +97,14 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Move Sidebar Toggle Button to Right Middle */
+    /* Move Sidebar Toggle Button to Left Middle */
     [data-testid="collapsedControl"] {
         position: fixed !important;
-        left: auto !important;
-        right: 10px !important;
+        left: 10px !important;
+        right: auto !important;
         top: 50% !important;
         transform: translateY(-50%) !important;
         z-index: 999999 !important;
-    }
-
-    /* PC Layout: Right Sidebar */
-    @media (min-width: 769px) {
-        /* Force Sidebar to Right */
-        [data-testid="stSidebar"] {
-            position: fixed !important;
-            left: auto !important;
-            right: 0 !important;
-            top: 0 !important;
-            bottom: 0 !important;
-            width: 350px !important;
-            min-width: 350px !important;
-            max-width: 350px !important;
-            border-right: none !important;
-            border-left: 1px solid #4A4D55 !important;
-            transform: none !important;
-            z-index: 10000 !important;
-        }
-        
-        /* Adjust Main Content to make space on right */
-        section[data-testid="stMain"] {
-            margin-left: 0 !important;
-            margin-right: 350px !important;
-        }
-        
-        /* Adjust Header */
-        header[data-testid="stHeader"] {
-            left: 0 !important;
-            right: 350px !important;
-            width: auto !important;
-        }
     }
     
     /* Headers */
