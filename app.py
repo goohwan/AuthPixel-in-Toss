@@ -358,10 +358,10 @@ if coffee_btn_src:
             display: none;
             position: fixed;
             left: 80px;
-            top: 50%;
+            top: 2%;
             transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
+            width: 90px;
+            height: 60px;
             z-index: 999999;
         }}
         
