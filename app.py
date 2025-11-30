@@ -97,10 +97,14 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Move Sidebar Toggle Button to Right */
+    /* Move Sidebar Toggle Button to Right Middle */
     [data-testid="collapsedControl"] {
+        position: fixed !important;
         left: auto !important;
-        right: 350px !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 999999 !important;
     }
 
     /* PC Layout: Right Sidebar */
