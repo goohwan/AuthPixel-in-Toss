@@ -97,17 +97,16 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Sidebar Width and Content Containment */
-    [data-testid="stSidebar"] {
-        width: 350px !important;
-        min-width: 350px !important;
-        max-width: 350px !important;
-    }
-    
+    /* Sidebar Width - Fixed at 350px */
     [data-testid="stSidebar"] > div:first-child {
         width: 350px !important;
         padding: 1rem !important;
         overflow-x: hidden !important;
+    }
+    
+    /* When sidebar is collapsed, move it completely off-screen */
+    [data-testid="stSidebar"][aria-hidden="true"] {
+        transform: translateX(-350px) !important;
     }
     
     /* Ensure sidebar content doesn't overflow */
