@@ -338,6 +338,40 @@ try:
 except FileNotFoundError:
     img_src = "" # Handle case where file is missing
 
+# Load buymeacoffee button image for toggle button
+try:
+    coffee_btn_base64 = get_base64_of_bin_file("buymeacoffee_btn.png")
+    coffee_btn_src = f"data:image/png;base64,{coffee_btn_base64}"
+except FileNotFoundError:
+    coffee_btn_src = ""
+
+# Add CSS for coffee button next to toggle
+if coffee_btn_src:
+    st.markdown(f"""
+    <style>
+        /* Add Buy Me a Coffee button next to toggle */
+        [data-testid="collapsedControl"]::after {{
+            content: '';
+            position: fixed;
+            left: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-image: url('{coffee_btn_src}');
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            z-index: 999998;
+        }}
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Add clickable link overlay
+    st.markdown(f"""
+    <a href="https://buymeacoffee.com/goohwan" target="_blank" style="position: fixed; left: 80px; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; z-index: 999999; display: block;"></a>
+    """, unsafe_allow_html=True)
+
 # --- Sidebar Content (HTML) ---
 sidebar_html = f"""
 <h3>이 서비스가 도움이 되셨나요?</h3>
