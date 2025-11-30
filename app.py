@@ -305,13 +305,13 @@ except FileNotFoundError:
 
 # --- Sidebar Content (HTML) ---
 sidebar_html = f"""
-    <h3>이 서비스가 도움이 되셨나요?</h3>
-    <a href="https://www.buymeacoffee.com/goohwan">
-        <img src="https://img.buymeacoffee.com/button-api/?text=커피한잔<br>후원하기&emoji=☕&slug=goohwan&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
-    </a><br>
-    <a href="https://www.buymeacoffee.com/goohwan">
-    <img src="{img_src}" style="width:250px; display:block; margin:15px auto;" title="카메라 앱으로 QR코드를 비춰보세요"></a>
-    
+<h3>이 서비스가 도움이 되셨나요?</h3>
+<a href="https://www.buymeacoffee.com/goohwan">
+<img src="https://img.buymeacoffee.com/button-api/?text=커피한잔<br>후원하기&emoji=☕&slug=goohwan&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
+</a><br>
+<p style="text-align:center;">
+<img src="{img_src}" style="width:250px; display:block; margin:15px auto;" title="카메라 앱으로 QR코드를 비춰보세요">제작자 후원하기<br>(커피한잔 사주세요~*)
+</p>
 """
 
 with st.sidebar:
