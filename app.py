@@ -285,16 +285,29 @@ with tab2:
 st.markdown("---")
 st.markdown(t["footer"])
 
+import base64
+
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+try:
+    img_base64 = get_base64_of_bin_file("mywalletqr.png")
+    img_src = f"data:image/png;base64,{img_base64}"
+except FileNotFoundError:
+    img_src = "" # Handle case where file is missing
+
 with st.sidebar:
     st.markdown("### 이 서비스가 도움이 되셨나요?")
     # Buy Me a Coffee 버튼 (이미지와 링크 연결)
     st.markdown(
-        """
+        f"""
         <a href="https://www.buymeacoffee.com/goohwan">
             <img src="https://img.buymeacoffee.com/button-api/?text=커피한잔<br>후원하기&emoji=☕&slug=goohwan&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
         </a><br>
         <p style="text-align:center;">
-            <img src="/mywalletqr.png" style="width:250px; display:block; margin:15px auto;" title="카메라 앱으로 QR코드를 비춰보세요">제작자 후원하기<br>(커피한잔 사주세요~*)
+            <img src="{img_src}" style="width:250px; display:block; margin:15px auto;" title="카메라 앱으로 QR코드를 비춰보세요">제작자 후원하기<br>(커피한잔 사주세요~*)
         </p>
         """,
         unsafe_allow_html=True
