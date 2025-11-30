@@ -349,27 +349,35 @@ except FileNotFoundError:
 if coffee_btn_src:
     st.markdown(f"""
     <style>
-        /* Add Buy Me a Coffee button next to toggle */
-        [data-testid="collapsedControl"]::after {{
-            content: '';
+        /* Add Buy Me a Coffee button next to toggle - only when sidebar is collapsed */
+        [data-testid="stSidebar"][aria-expanded="false"] ~ div .coffee-btn-overlay {{
+            display: block !important;
+        }}
+        
+        .coffee-btn-overlay {{
+            display: none;
             position: fixed;
             left: 80px;
             top: 50%;
             transform: translateY(-50%);
             width: 50px;
             height: 50px;
-            background-image: url('{coffee_btn_src}');
-            background-size: contain;
-            background-repeat: no-repeat;
+            z-index: 999999;
+        }}
+        
+        .coffee-btn-overlay img {{
+            width: 100%;
+            height: 100%;
             cursor: pointer;
-            z-index: 999998;
         }}
     </style>
     """, unsafe_allow_html=True)
     
-    # Add clickable link overlay
+    # Add clickable link with image
     st.markdown(f"""
-    <a href="https://buymeacoffee.com/goohwan" target="_blank" style="position: fixed; left: 80px; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; z-index: 999999; display: block;"></a>
+    <a href="https://buymeacoffee.com/goohwan" target="_blank" class="coffee-btn-overlay">
+        <img src="{coffee_btn_src}" alt="Buy Me a Coffee" />
+    </a>
     """, unsafe_allow_html=True)
 
 # --- Sidebar Content (HTML) ---
