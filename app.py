@@ -141,26 +141,6 @@ st.markdown("""
         top: 50% !important;
         transform: translateY(-50%) !important;
         z-index: 999999 !important;
-        width: 60px !important;
-        height: 60px !important;
-        border: none !important;
-        border-radius: 50% !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-    }
-    
-    /* Replace button content with image */
-    [data-testid="collapsedControl"] button {
-        width: 100% !important;
-        height: 100% !important;
-        background: transparent !important;
-        border: none !important;
-        padding: 0 !important;
-    }
-    
-    /* Hide the default icon */
-    [data-testid="collapsedControl"] svg {
-        display: none !important;
     }
     
     /* Headers */
