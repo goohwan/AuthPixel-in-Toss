@@ -97,6 +97,11 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
+    /* Sidebar Width */
+    [data-testid="stSidebar"] > div:first-child {
+        width: 350px !important;
+    }
+
     /* Move Sidebar Toggle Button to Left Middle */
     [data-testid="collapsedControl"] {
         position: fixed !important;
