@@ -10,7 +10,7 @@ st.set_page_config(
     page_title="AuthPixel - Invisible Watermarking",
     page_icon="🔒",
     layout="centered",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
 # --- AdSense ---
@@ -97,13 +97,15 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Sidebar Width - Target inner content to allow collapse */
-    [data-testid="stSidebar"] > div:first-child {
-        width: 350px;
-    }
+    /* Sidebar Customization */
     [data-testid="stSidebar"] {
-        min-width: unset !important;
-        max-width: unset !important;
+        min-width: 350px !important;
+        max-width: 350px !important;
+    }
+    
+    /* Hide Sidebar Toggle Button */
+    [data-testid="collapsedControl"] {
+        display: none;
     }
     
     /* Headers */
@@ -301,17 +303,48 @@ try:
 except FileNotFoundError:
     img_src = "" # Handle case where file is missing
 
+# --- Sidebar Content (HTML) ---
+sidebar_html = f"""
+    <h3>이 서비스가 도움이 되셨나요?</h3>
+    <a href="https://www.buymeacoffee.com/goohwan">
+        <img src="https://img.buymeacoffee.com/button-api/?text=커피한잔<br>후원하기&emoji=☕&slug=goohwan&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
+    </a><br>
+    <a href="https://www.buymeacoffee.com/goohwan">
+        <img src="{img_src}" style="width:250px; display:block; margin:15px auto;" title="카메라 앱으로 QR코드를 비춰보세요">제작자 후원하기<br>(커피한잔 사주세요~*)
+    </a>
+"""
+
 with st.sidebar:
-    st.markdown("### 이 서비스가 도움이 되셨나요?")
-    # Buy Me a Coffee 버튼 (이미지와 링크 연결)
-    st.markdown(
-        f"""
-        <a href="https://www.buymeacoffee.com/goohwan">
-            <img src="https://img.buymeacoffee.com/button-api/?text=커피한잔<br>후원하기&emoji=☕&slug=goohwan&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
-        </a><br>
-        <p style="text-align:center;">
-            <img src="{img_src}" style="width:250px; display:block; margin:15px auto;" title="카메라 앱으로 QR코드를 비춰보세요">제작자 후원하기<br>(커피한잔 사주세요~*)
-        </p>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown(sidebar_html, unsafe_allow_html=True)
+
+# --- Mobile Sidebar (Bottom) ---
+st.markdown(f"""
+<div class="mobile-sidebar">
+    <hr>
+    {sidebar_html}
+</div>
+""", unsafe_allow_html=True)
+
+# --- CSS for Mobile Responsiveness ---
+st.markdown("""
+<style>
+    @media (max-width: 768px) {
+        [data-testid="stSidebar"] {
+            display: none !important;
+        }
+        .mobile-sidebar {
+            display: block;
+            text-align: center;
+            padding: 20px;
+            background-color: #1A1C23;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    }
+    @media (min-width: 769px) {
+        .mobile-sidebar {
+            display: none;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
