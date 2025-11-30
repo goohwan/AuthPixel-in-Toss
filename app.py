@@ -97,15 +97,33 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Sidebar Customization */
-    [data-testid="stSidebar"] {
-        min-width: 350px !important;
-        max-width: 350px !important;
-    }
-    
     /* Hide Sidebar Toggle Button */
     [data-testid="collapsedControl"] {
         display: none;
+    }
+
+    /* PC Layout: Right Sidebar */
+    @media (min-width: 769px) {
+        [data-testid="stSidebar"] {
+            min-width: 350px !important;
+            max-width: 350px !important;
+            left: auto !important;
+            right: 0 !important;
+            border-right: none;
+            border-left: 1px solid #4A4D55;
+        }
+        
+        /* Adjust Main Content */
+        section[data-testid="stMain"] {
+            margin-left: 0 !important;
+            margin-right: 350px !important;
+        }
+        
+        /* Adjust Header */
+        header[data-testid="stHeader"] {
+            margin-left: 0 !important;
+            margin-right: 350px !important;
+        }
     }
     
     /* Headers */
