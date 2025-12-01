@@ -212,7 +212,10 @@ def embed_watermark(image, text):
         embedder = WatermarkEmbedder()
         
         # Embed watermark
-        img_encoded_np = embedder.embed(img_np, text)
+        img_encoded_np, error = embedder.embed(img_np, text)
+        
+        if error:
+            return None, error
         
         return Image.fromarray(img_encoded_np), None
     except Exception as e:
@@ -225,7 +228,7 @@ def decode_watermark(image):
         img_np = np.array(image)
         
         decoder = WatermarkDecoder()
-        watermark = decoder.decode(img_np)
+        watermark, error = decoder.decode(img_np)
         
         if watermark:
             # Filter out non-printable characters just in case
@@ -235,7 +238,7 @@ def decode_watermark(image):
             else:
                 return None, "Decoded data contains no printable text."
         else:
-            return None, "No watermark detected."
+            return None, error if error else "No watermark detected."
     except Exception as e:
         return None, str(e)
 
