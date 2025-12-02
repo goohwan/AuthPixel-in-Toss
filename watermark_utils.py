@@ -1,24 +1,25 @@
 import numpy as np
 import cv2
+from collections import Counter
+import re
 
 class WatermarkEmbedder:
     def __init__(self):
         self.block_size = 8
-        self.Q = 40  # Higher for stronger embedding
-        self.SYNC_CODE = "10101010"  # 8 bits alternating pattern
+        self.Q = 50  # Balanced for Crop/JPEG robustness
+        self.SYNC_CODE = "11100011100011100011"  # 20 bits
 
     def embed(self, image, watermark_text):
         """
-        Embeds text using Block DCT with simple repetition.
+        Embeds text using Block DCT with repetition (optimized for Crop/JPEG).
         """
         img_yuv = cv2.cvtColor(image, cv2.COLOR_RGB2YCrCb)
         h, w, _ = img_yuv.shape
         y_channel = img_yuv[:, :, 0].astype(np.float32)
 
-        # Prepare Packet: [SYNC][MSG]
+        # Prepare Packet: [SYNC][MSG][TERMINATOR]
         binary_msg = ''.join(format(ord(char), '08b') for char in watermark_text)
-        # Add terminator
-        binary_msg += '00000000'
+        binary_msg += '00000000'  # Terminator
         
         packet = self.SYNC_CODE + binary_msg
         packet_len = len(packet)
@@ -69,15 +70,15 @@ class WatermarkEmbedder:
 class WatermarkDecoder:
     def __init__(self):
         self.block_size = 8
-        self.Q = 40
-        self.SYNC_CODE = "10101010"
+        self.Q = 50
+        self.SYNC_CODE = "11100011100011100011"
 
     def decode(self, image):
         img_yuv = cv2.cvtColor(image, cv2.COLOR_RGB2YCrCb)
         y_channel = img_yuv[:, :, 0].astype(np.float32)
         h, w = y_channel.shape
         
-        # Grid Search
+        # Grid Search (for crop robustness)
         all_extractions = []
         
         for offset_y in range(self.block_size):
@@ -115,14 +116,13 @@ class WatermarkDecoder:
         
         for bit_stream in all_extractions:
             # Find SYNC
-            import re
             sync_matches = [m.start() for m in re.finditer(self.SYNC_CODE, bit_stream)]
             
             for sync_pos in sync_matches:
                 msg_start = sync_pos + len(self.SYNC_CODE)
                 
                 # Read until we hit terminator or run out
-                for end in range(msg_start + 8, min(len(bit_stream), msg_start + 200), 8):
+                for end in range(msg_start + 8, min(len(bit_stream), msg_start + 400), 8):
                     chunk = bit_stream[msg_start:end]
                     
                     # Check for terminator
@@ -140,7 +140,7 @@ class WatermarkDecoder:
                                 else:
                                     break
                             
-                            if len(chars) > 0:
+                            if len(chars) >= 3:  # Min length filter
                                 candidates.append("".join(chars))
                                 break
                         except:
@@ -148,7 +148,6 @@ class WatermarkDecoder:
 
         if candidates:
             # Return most common
-            from collections import Counter
             most_common = Counter(candidates).most_common(1)
             return most_common[0][0], None
         else:
