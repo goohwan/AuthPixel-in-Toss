@@ -6,7 +6,7 @@ import re
 class WatermarkEmbedder:
     def __init__(self):
         self.block_size = 8
-        self.Q = 50  # Balanced for Crop/JPEG robustness
+        self.Q = 30  # Balanced for Crop/JPEG robustness
         self.SYNC_CODE = "11100011100011100011"  # 20 bits
 
     def embed(self, image, watermark_text):
@@ -70,7 +70,7 @@ class WatermarkEmbedder:
 class WatermarkDecoder:
     def __init__(self):
         self.block_size = 8
-        self.Q = 50
+        self.Q = 30
         self.SYNC_CODE = "11100011100011100011"
 
     def decode(self, image):

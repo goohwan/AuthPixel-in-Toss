@@ -10,7 +10,7 @@ st.set_page_config(
     page_title="AuthPixel - Invisible Watermarking",
     page_icon="🔒",
     layout="centered",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # --- AdSense ---
@@ -22,7 +22,7 @@ st.markdown("""
 
 # --- Localization ---
 if 'language' not in st.session_state:
-    st.session_state.language = 'en'
+    st.session_state.language = 'ko'
 
 def toggle_language():
     if st.session_state.language == 'en':
@@ -99,50 +99,14 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Sidebar Width and Content Containment */
+    /* Hide Sidebar completely */
     [data-testid="stSidebar"] {
-        width: 350px !important;
-        min-width: 350px !important;
-        max-width: 350px !important;
-        overflow: hidden !important;
-    }
-    
-    [data-testid="stSidebar"] > div {
-        width: 350px !important;
-        max-width: 350px !important;
-    }
-    
-    [data-testid="stSidebar"] > div:first-child {
-        width: 350px !important;
-        padding: 1rem !important;
-        overflow-x: hidden !important;
-        box-sizing: border-box !important;
-    }
-    
-    /* Move sidebar completely off-screen when collapsed */
-    [data-testid="stSidebar"][aria-expanded="false"] {
-        margin-left: -350px !important;
-    }
-    
-    /* Ensure sidebar content doesn't overflow */
-    [data-testid="stSidebar"] img {
-        max-width: 100% !important;
-        height: auto !important;
-    }
-    
-    [data-testid="stSidebar"] a {
-        max-width: 100% !important;
-        display: block !important;
+        display: none;
     }
 
-    /* Move Sidebar Toggle Button to Left Middle */
+    /* Hide Sidebar Toggle Button */
     [data-testid="collapsedControl"] {
-        position: fixed !important;
-        left: 10px !important;
-        right: auto !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        z-index: 999999 !important;
+        display: none;
     }
     
     /* Headers */
@@ -271,7 +235,7 @@ with tab1:
     
     if uploaded_file:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Original Image", use_column_width=True)
+        st.image(image, caption="Original Image", use_container_width=True)
         
         watermark_text = st.text_input(t["watermark_text_label"], max_chars=20)
         
@@ -286,7 +250,7 @@ with tab1:
                     st.error(f"Error: {error}")
                 else:
                     st.success(t["success_embed"])
-                    st.image(watermarked_img, caption="Protected Image", use_column_width=True)
+                    st.image(watermarked_img, caption="Protected Image", use_container_width=True)
                     
                     # Convert to bytes for download
                     buf = io.BytesIO()
@@ -310,7 +274,7 @@ with tab2:
     
     if verify_file:
         verify_image = Image.open(verify_file)
-        st.image(verify_image, caption="Uploaded Image", use_column_width=True)
+        st.image(verify_image, caption="Uploaded Image", use_container_width=True)
         
         if st.button(t["decode_button"]):
             with st.spinner(t["decoding_spinner"]):
@@ -332,103 +296,6 @@ with tab2:
 st.markdown("---")
 st.markdown(t["footer"])
 
-import base64
 
-def get_base64_of_bin_file(bin_file):
-    with open(bin_file, 'rb') as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
 
-try:
-    img_base64 = get_base64_of_bin_file("mywalletqr.png")
-    img_src = f"data:image/png;base64,{img_base64}"
-except FileNotFoundError:
-    img_src = "" # Handle case where file is missing
 
-# Load buymeacoffee button image for toggle button
-try:
-    coffee_btn_base64 = get_base64_of_bin_file("buymeacoffee_btn.png")
-    coffee_btn_src = f"data:image/png;base64,{coffee_btn_base64}"
-except FileNotFoundError:
-    coffee_btn_src = ""
-
-# Add CSS for coffee button next to toggle
-if coffee_btn_src:
-    st.markdown(f"""
-    <style>
-        /* Add Buy Me a Coffee button next to toggle - only when sidebar is collapsed */
-        [data-testid="stSidebar"][aria-expanded="false"] ~ div .coffee-btn-overlay {{
-            display: block !important;
-        }}
-        
-        .coffee-btn-overlay {{
-            display: none;
-            position: fixed;
-            left: 50px;
-            top: 3.5%;
-            transform: translateY(-50%);
-            width: 90px;
-            height: 60px;
-            z-index: 999999;
-        }}
-        
-        .coffee-btn-overlay img {{
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }}
-    </style>
-    """, unsafe_allow_html=True)
-    
-    # Add clickable link with image
-    st.markdown(f"""
-    <a href="https://buymeacoffee.com/goohwan" target="_blank" class="coffee-btn-overlay">
-        <img src="{coffee_btn_src}" alt="Buy Me a Coffee" />
-    </a>
-    """, unsafe_allow_html=True)
-
-# --- Sidebar Content (HTML) ---
-sidebar_html = f"""
-<h3>이 서비스가 도움이 되셨나요?</h3>
-<a href="https://www.buymeacoffee.com/goohwan">
-<img src="{img_src}" style="width:250px; display:block; margin:15px auto;" title="카메라 앱으로 QR코드를 비춰보세요">
-</a><br>
-<a href="https://www.buymeacoffee.com/goohwan">
-<img src="https://img.buymeacoffee.com/button-api/?text=커피한잔<br>후원하기&emoji=☕&slug=goohwan&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
-</a>
-"""
-
-with st.sidebar:
-    st.markdown(sidebar_html, unsafe_allow_html=True)
-
-# --- Mobile Sidebar (Bottom) ---
-st.markdown(f"""
-<div class="mobile-sidebar">
-    <hr>
-    {sidebar_html}
-</div>
-""", unsafe_allow_html=True)
-
-# --- CSS for Mobile Responsiveness ---
-st.markdown("""
-<style>
-    @media (max-width: 768px) {
-        [data-testid="stSidebar"] {
-            display: none !important;
-        }
-        .mobile-sidebar {
-            display: block;
-            text-align: center;
-            padding: 20px;
-            background-color: #1A1C23;
-            margin-top: 20px;
-            border-radius: 10px;
-        }
-    }
-    @media (min-width: 769px) {
-        .mobile-sidebar {
-            display: none;
-        }
-    }
-</style>
-""", unsafe_allow_html=True)

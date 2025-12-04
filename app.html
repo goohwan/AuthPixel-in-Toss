@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <!-- [핵심 해결책] 뷰포트 메타 태그 추가 -->
     <!-- width=device-width: 기기 너비에 맞춤 -->
     <!-- initial-scale=1.0: 축소하지 않고 1:1 비율로 시작 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+
     <title>AuthPixel App</title>
-    
+    <link rel="manifest" href="manifest.json">
+
     <style>
         /* 모바일 전체 화면을 꽉 채우기 위한 설정 */
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* 이중 스크롤 방지 */
-            background-color: #0e1117; /* Streamlit 다크모드 배경색과 일치시킴 (로딩 중 깜빡임 최소화) */
+            overflow: hidden;
+            /* 이중 스크롤 방지 */
+            background-color: #0e1117;
+            /* Streamlit 다크모드 배경색과 일치시킴 (로딩 중 깜빡임 최소화) */
         }
-        
+
         iframe {
-            display: block;       /* 인라인 요소 여백 제거 */
+            display: block;
+            /* 인라인 요소 여백 제거 */
             width: 100%;
             height: 100%;
             border: none;
-            position: absolute;   /* 화면 고정 */
+            position: absolute;
+            /* 화면 고정 */
             top: 0;
             left: 0;
             right: 0;
@@ -33,13 +40,14 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Streamlit 앱 임베딩 -->
     <!-- allow 속성: 모바일에서 클립보드 복사나 다운로드 등이 잘 되도록 권한 허용 -->
-    <iframe id="myframe"
-        src="https://atpixel.streamlit.app/?embed=true&embed_options=dark_theme"
+    <iframe id="myframe" src="https://atpixelintoss.streamlit.app/?embed=true&embed_options=dark_theme"
         allow="camera; microphone; clipboard-read; clipboard-write; downloads"
         sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-downloads allow-modals">
     </iframe>
 </body>
+
 </html>
