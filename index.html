@@ -2,127 +2,15 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 모바일 대응을 위해 추가 -->
-    <title>AuthPixel - AI 이미지 보안 솔루션</title>
-    <!-- 구글 애드센스 메타 태그 & 스크립트 위치 -->
-    <meta name="google-adsense-account" content="ca-pub-3474389046240414">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3474389046240414"
-        crossorigin="anonymous"></script>
-
-    <style>
-        /* 스타일링 */
-        body {
-            /* 배경 이미지 설정 (이미지 파일명: bg.png) */
-            /* linear-gradient는 이미지 위에 검은색 투명막을 씌워 글씨를 잘 보이게 합니다 */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('authpixel.png');
-            background-size: cover;
-            /* 화면 꽉 차게 */
-            background-position: center;
-            /* 중앙 정렬 */
-            background-repeat: no-repeat;
-            /* 반복 방지 */
-            background-attachment: fixed;
-            /* 스크롤해도 배경 고정 */
-
-            background-color: #0e1117;
-            /* 이미지가 없을 때를 대비한 기본색 */
-            color: white;
-            text-align: center;
-            font-family: sans-serif;
-            padding: 50px 20px;
-            /* 모바일 여백 고려하여 좌우 패딩 수정 */
-            margin: 0;
-            /* 기본 마진 제거 */
-            min-height: 100vh;
-            /* 화면 전체 높이 사용 */
-            box-sizing: border-box;
-        }
-
-        h1 {
-            margin-top: 0;
-            font-size: 3rem;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
-            /* 네온 효과 */
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 10px auto;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #00e5ff;
-            color: black;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 2px solid #00e5ff;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px #00e5ff;
-            background-color: transparent;
-            color: #00e5ff;
-        }
-
-        .ad-container {
-            margin: 40px auto;
-            width: 300px;
-            /* 모바일 친화적 사이즈 */
-            max-width: 100%;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.05);
-            /* 투명도 적용 */
-            overflow: hidden;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuthPixel - Invisible Watermarking</title>
+    <meta name="description" content="보이지 않는 워터마크를 삽입해서 이미지 자산을 지켜보세요" />
 </head>
 
 <body>
-    <h1>AuthPixel 🔒</h1>
-    <p>AI 생성 이미지, 이제 안심하고 공유하세요.</p>
-    <p>보이지 않는 워터마크로 당신의 저작권을 지켜드립니다.</p>
-
-    <!-- [광고 영역 1] -->
-    <div class="ad-container">
-        <!-- 상단 광고 -->
-        <script async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3474389046240414"
-            crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed"
-            data-ad-client="ca-pub-3474389046240414" data-ad-slot="5864875231"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
-    <!-- [서비스 시작 버튼] -->
-    <a href="https://authpixel.goohwan.net/app.html" class="btn">워터마크 만들기 시작 (무료) ➤</a>
-    <br><br>
-
-    <!-- [광고 영역 2] -->
-    <div class="ad-container">
-        <!-- 하단 광고 -->
-        <script async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3474389046240414"
-            crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed"
-            data-ad-client="ca-pub-3474389046240414" data-ad-slot="5864875231"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
