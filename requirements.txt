@@ -4,3 +4,6 @@ invisible-watermark
 numpy
 Pillow
 PyWavelets
+fastapi
+uvicorn
+python-multipart
